@@ -1,0 +1,17 @@
+
+
+.page{
+  background-color: #9B26B1;
+  padding-top: 5VW;
+}
+.mode1{ font-size: 5vw; font-weight: 600; color: #707070; padding: 20px ; background: #fff;margin:10px; width: 40vw;}
+.mode2{ font-size: 5vw; font-weight: 600; color: #707070; padding: 20px ; background: #fff;margin:10px; width: 80vw;}
+.mode3{ font-size: 5vw; font-weight: 600; color: #707070; padding: 20px ; background: #fff;margin:10px; width: 40vw;}
+.bar-line{
+  height: 40px;
+  background: #781010;
+  margin:10px 0;
+}
+.title{
+  color: #FDE203;font-size: 11vw;
+}

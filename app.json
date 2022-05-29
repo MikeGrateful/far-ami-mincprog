@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/home/home",
     "pages/index/index",
     "pages/custom/index",
     "pages/category/index",
@@ -58,6 +59,7 @@
     "pages/points/log/index",
     "pages/sharp/index/index",
     "pages/sharp/goods/index"
+    
   ],
   "window": {
     "navigationBarBackgroundColor": "#ffffff",
@@ -72,7 +74,7 @@
     "backgroundColor": "#ffffff",
     "list": [
       {
-        "pagePath": "pages/index/index",
+        "pagePath": "pages/home/home",
         "text": "首页",
         "iconPath": "images/home.png",
         "selectedIconPath": "images/home-active.png"

@@ -4,7 +4,97 @@
 page {
   background: #f7f7f7;
 }
+/* flex 布局基础  start */
 
+.flex {
+  display: flex;
+  align-items: flex-end;
+} 
+.flex-between {
+     display: flex;
+     justify-content: space-between;
+     align-items: center;
+ }
+ .fix{
+  align-items: center !important;
+}
+
+.col{
+display: flex;
+flex-direction: row;
+}
+.colCenter{
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+}
+.center {
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+}
+.between{
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: space-between;
+}
+.with-top{
+  border-top: 1px solid #eee;
+}
+
+.line {
+display: flex;
+flex-direction: row;
+align-items: center;
+}
+.flexItem,.flex-item,.flex1{
+flex: 1;
+}
+.page {
+height: 100vh;
+display: flex;
+flex-direction: column;
+}
+
+.main {
+flex: 1; 
+overflow: auto;
+}
+.fixed{
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  background: #ffffff;
+  max-width: 420px;
+}
+.fixed-center{
+padding: 10px;
+}
+.flex-end{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.fixedBottom{
+position: fixed;
+bottom: 0px;
+left: 50%;
+width: 100vw;
+max-width: 420px;
+background: #fff;
+  transform: translate(-50%);
+
+}  
+.fixedCenter{
+ margin: 10px;
+ padding: 2px;
+}  
+
+/* flex 布局基础 end */
 .common-header-xian {
   border-top: 1rpx solid #eee;
   position: fixed;

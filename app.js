@@ -26,6 +26,8 @@ App({
 
   // api地址
   api_root: siteinfo.siteroot + 'index.php?s=/api/',
+  // api地址
+  api_java_root: siteinfo.javaroot  + "/far/api",
 
   /**
    * 生命周期函数--监听小程序初始化
@@ -380,9 +382,38 @@ App({
   },
 
   /**
+   * 商铺信息
+   */
+  getshop(id){
+    let App = this;
+    var data = {};
+    data.wxapp_id = App.getWxappId();
+  	data.token = wx.getStorageSync('token');
+    wx.request({
+        url: App.api_java_root + "/user/get-user-at-shop?userId="+id,
+        header: { 'content-type': 'application/json'},
+        data: data,
+        success(res) {
+          console.log("信息",res);
+          var len = res.data.data.length
+          if(len==0){
+            App.uniacid = data.data[0].wxappid
+          }
+		    },
+		    fail(res) {
+          console.log("错误信息",res);
+          App.showError(res.errMsg, function() {
+            
+          });
+        },
+        complete(res) { 
+        },
+      });
+  },
+  /**
    * 授权登录
    */
-  getUserInfo(e, callback) {
+  getUserInfo(e, callback) { 
     let App = this;
     if (e.detail.errMsg !== 'getUserInfo:ok') {
       return false;
@@ -406,6 +437,8 @@ App({
           // 记录token user_id
           wx.setStorageSync('token', result.data.token);
           wx.setStorageSync('user_id', result.data.user_id);
+          // 查询用户所属商铺信息 单个商铺直接进 多个则进行选择
+          App.getshop( result.data.user_id ); 
           // 执行回调函数
           callback && callback();
         }, false, () => {
