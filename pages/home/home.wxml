@@ -9,7 +9,7 @@
  <view class="centerx">
   <view class="center mode3" wx:for="{{button.bottom}}"  style="background-color:{{item.color}}"> {{ item.title }} </view>
  </view>
- <view class="title">
+ <!-- <view class="title">
   专属于您家的小程序
- </view>
+ </view> -->
 </view>
