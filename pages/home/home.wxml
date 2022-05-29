@@ -1,13 +1,13 @@
 <!--pages/home.wxml-->
 <view class="page">
- <view class="center">
-  <view class="center mode1" wx:for="{{button.top}}"> {{ item.title }} </view>
+ <view class="centerx">
+  <view class="center mode1" wx:for="{{button.top}}"  style="background-color:{{item.color}}"> {{ item.title }} </view>
  </view>
  
  <view class="bar-line">
  </view>
- <view class="center">
-  <view class="center mode3" wx:for="{{button.bottom}}"> {{ item.title }} </view>
+ <view class="centerx">
+  <view class="center mode3" wx:for="{{button.bottom}}"  style="background-color:{{item.color}}"> {{ item.title }} </view>
  </view>
  <view class="title">
   专属于您家的小程序
