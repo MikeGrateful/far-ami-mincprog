@@ -62,7 +62,11 @@ Page({
   onUnload: function () {
 
   },
-
+  onClick(e){
+    let url = e.currentTarget.dataset.url || '/pages/index/index';
+    console.log(url);
+    wx.navigateTo({ url})
+  },
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
