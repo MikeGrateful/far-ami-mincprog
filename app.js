@@ -399,8 +399,8 @@ App({
           if(len==0){
             App.uniacid = data.data[0].wxappid
           }
-		    },
-		    fail(res) {
+		},
+		fail(res) {
           console.log("错误信息",res);
           App.showError(res.errMsg, function() {
             
