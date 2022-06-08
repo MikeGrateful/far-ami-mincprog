@@ -67,7 +67,7 @@ Page({
     let url = e.currentTarget.dataset.url || '/pages/index/index';
     //wx.navigateTo({ url})
 
-    wx.redirectTo({
+    wx.reLaunch({
         url: url
       })
 

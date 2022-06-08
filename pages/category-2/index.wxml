@@ -1,0 +1,56 @@
+
+
+   
+        <scroll-view class="scroll-view" scroll-x="{{true}}">
+            <view wx:for="{{lists}}"  data-onclick-id="{{index}}" class="{{oneClassCss[index]}}" bindtap="onSelectOneClass">{{item}}</view>
+        </scroll-view>
+
+   <view style="float: left;">
+        <scroll-view class="scroll-view-y" scroll-y="{{true}}">
+            <view >1</view>
+            <view >2</view>
+            <view >3</view>
+            <view >4</view>
+            <view>5</view>
+            <view >1</view>
+            <view >2</view>
+            <view >3</view>
+            <view >4</view>
+            <view>5</view>
+            <view >1</view>
+            <view >2</view>
+            <view >3</view>
+            <view >4</view>
+            <view>5</view>
+            <view >1</view>
+            <view >2</view>
+            <view >3</view>
+            <view >4</view>
+            <view>5</view>
+            <view >1</view>
+            <view >2</view>
+            <view >3</view>
+            <view >4</view>
+            <view>5</view>
+            <view >1</view>
+            <view >2</view>
+            <view >3</view>
+            <view >4</view>
+            <view>5</view>
+            <view >1</view>
+            <view >2</view>
+            <view >3</view>
+            <view >4</view>
+            <view>5</view>
+            <view >1</view>
+            <view >2</view>
+            <view >3</view>
+            <view >4</view>
+            <view>5</view>
+            
+        </scroll-view>
+
+       
+   </view>
+
+   <view style="float: left;">asdasdasd</view>

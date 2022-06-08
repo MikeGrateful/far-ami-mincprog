@@ -9,6 +9,10 @@ const tabBarLinks = [
   'pages/user/index'
 ];
 
+
+const FAR_TAG = "/far";
+
+
 // 站点配置文件
 import siteinfo from './siteinfo.js';
 
@@ -16,6 +20,12 @@ import siteinfo from './siteinfo.js';
 import util from './utils/util.js';
 
 App({
+
+   apis:{
+    categoryList:FAR_TAG + "/category/lists"
+   },
+
+
 
   /**
    * 全局变量
@@ -143,20 +153,37 @@ App({
    * get请求
    */
   _get(url, data, success, fail, complete, check_login) {
+
+  
+
     wx.showNavigationBarLoading();
     let _this = this;
     // 构造请求参数
     data = data || {};
+    //php用的参数
     data.wxapp_id = _this.getWxappId();
+    //java用的参数
+    data.wxAppId = _this.getWxappId();
 
     // if (typeof check_login === 'undefined')
     //   check_login = true;
+
+    //谢特URL的兼容处理
+    let newUrl; 
+
+    if( url.indexOf("/far") > -1   ){
+        url = url.replace(/\/far/,"");
+        newUrl = _this.api_java_root + url;
+    }else{
+        newUrl = _this.api_root + url;
+    }
+
 
     // 构造get请求
     let request = function() {
       data.token = wx.getStorageSync('token');
       wx.request({
-        url: _this.api_root + url,
+        url: newUrl,
         header: {
           'content-type': 'application/json'
         },
