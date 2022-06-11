@@ -4,24 +4,20 @@ const pageIndex = 'category/list::';
 Page({
     data: {
 
-
         cateGoryLists: [],
         oneClassCss: [],
-
-
+        //左边的分类
+        leftCateGoryLists:[],
+        //左边分类样式
+        leftCategoryCss:[],
         scrollHeight: null,
-
         showView: false, // 列表显示方式
-
         sortType: 'all', // 排序类型
         sortPrice: false, // 价格从低到高
-
         option: {}, // 当前页面参数
         list: {}, // 商品列表数据
-
         no_more: false, // 没有更多数据
         isLoading: true, // 是否正在加载中
-
         page: 1, // 当前页码
     },
 
@@ -36,29 +32,68 @@ Page({
             let data = result.data;
             console.log(data);
             // //根据返回的数量设置顶部分类样式
-            // data.list.length > 0 && _this.setTopCategoryCss(data.list);
-            // _this.setData({
-            //     cateGoryLists: data.list,
-            //     templet: data.templet,
-            //     categoryNotcont: !data.list.length
-            // });
+            data.list.length > 0 && _this.setTopCategoryCss(data.list);
+            _this.setData({
+                cateGoryLists: data.list,
+                templet: data.templet,
+                categoryNotcont: !data.list.length
+            });
+            //更新
+            this.setTopSelectCategory(0);
         });
     },
 
+    
+
+
+    //大分类选中时，更新子类数据
+    setTopSelectCategory(idx){ 
+
+        let _this = this;
+        let datas = _this.data.cateGoryLists[idx].child;
+        //先更新左边分类的样式
+        _this.setLeftCategoryCss(datas);
+        //更新左边子类列表数据
+        _this.setData({
+            leftCateGoryLists:datas
+        });
+        
+    },
+    //设置小分类为选中状态
+    setLeftSelectCategory(e){
+
+     
+    },
+
+
+    /**
+     * 设置顶部分类样式
+     * @param {*} lists 
+     */
     setTopCategoryCss(lists) {
-
-
         let data = [];
-
         lists.forEach(e => {
             data.push("top-category-item");
         });
-
         this.setData({
             oneClassCss: data
         })
 
+    },
 
+
+       /**
+     * 设置左边分类样式
+     * @param {*} lists 
+     */
+    setLeftCategoryCss(lists) {
+        let data = [];
+        lists.forEach(e => {
+            data.push("left-category-item");
+        });
+        this.setData({
+            leftCategoryCss: data
+        })
     },
 
 
@@ -67,8 +102,12 @@ Page({
        * @param {} e 
        */
     onSelectOneClass(e) {
-        console.log(e.currentTarget.dataset.onclickId);
+        // console.log(e.currentTarget.dataset.onclickId);
         let idx = e.currentTarget.dataset.onclickId;
+
+        let dataId = e.currentTarget.dataset.dataId;
+      
+
         // this.data.oneClassCss[idx] = "top-category-item-active";
 
         for (let eleIdx in this.data.oneClassCss) {
@@ -84,7 +123,46 @@ Page({
             oneClassCss: me.data.oneClassCss
         })
 
+        this.setTopSelectCategory(idx);
 
+        //获取商品数据
+        this.setData({
+            option:{
+                category_id:dataId
+            }
+        })
+
+        me.getGoodsList();
+    },
+
+
+    onSelectLeftGategory(e){
+        let _this = this;
+        let idx = e.currentTarget.dataset.onclickId;
+        // this.data.oneClassCss[idx] = "top-category-item-active";
+        let dataId = e.currentTarget.dataset.dataId;
+
+        for (let eleIdx in this.data.leftCategoryCss) {
+            if (eleIdx == idx) {
+                _this.data.leftCategoryCss[eleIdx] = "left-category-item-active";
+            } else {
+                _this.data.leftCategoryCss[eleIdx] = "left-category-item";
+            }
+        }
+
+        
+        _this.setData({
+            leftCategoryCss: _this.data.leftCategoryCss
+        });
+
+         //获取商品数据
+         _this.setData({
+            option:{
+                category_id:dataId
+            }
+        })
+
+        _this.getGoodsList();
 
     },
 
@@ -94,9 +172,6 @@ Page({
      */
     onLoad(option) {
         let _this = this;
-
-
-
 
         // 设置商品列表高度
         _this.setListHeight();
@@ -108,12 +183,7 @@ Page({
         _this.setShowView();
         // 获取商品列表
         _this.getGoodsList();
-
-
         _this.getCategoryList();
-
-
-
 
     },
 
@@ -207,6 +277,9 @@ Page({
      * 下拉到底加载数据
      */
     bindDownLoad() {
+
+        console.log("sss")
+
         // 已经是最后一页
         if (this.data.page >= this.data.list.last_page) {
             this.setData({
